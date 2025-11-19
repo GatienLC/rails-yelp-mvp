@@ -1,0 +1,26 @@
+<%= form_with(model: [@restaurant, @review]) do |f| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+      <ul>
+        <% @review.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+
+  <div>
+    <%= f.label :rating %><br>
+    <%= f.number_field :rating, in: 0..5 %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
